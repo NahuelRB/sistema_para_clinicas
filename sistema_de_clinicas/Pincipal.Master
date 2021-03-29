@@ -1,0 +1,45 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Pincipal.master.cs" Inherits="sistema_de_clinicas.Pincipal" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title></title>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<!--<body>
+    <form id="form1" runat="server">
+        <div>
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+            </asp:ContentPlaceHolder>
+        </div>
+    </form>
+</body>-->
+    <body>
+    <form runat="server">
+        <div class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <li><a runat="server" href="~/">Inicio</a></li>
+                        <li><a runat="server" href="~/Vistas/personas1/Index">Lista de Médicos</a></li>
+                        <li><a runat="server" href="~/Vistas/listaMedicos">Lista de Médicos</a></li>
+                        <li><a runat="server" href="~/Vistas/listaPacientes">Lista de Pacientes</a></li>
+                         <li><a runat="server" href="~/Vistas/listaConsultas">Lista de Consultas</a></li>
+                    </ul>                 
+                </div>
+            </div>
+        </div>
+        <div class="container body-content">
+            <asp:ContentPlaceHolder ID="MainContent" runat="server">
+            </asp:ContentPlaceHolder>
+            <hr />
+            <footer>
+                <p> Sistema de clinicas 2021 </p>
+            </footer>
+        </div>
+    </form>
+</body>
+</html>

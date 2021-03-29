@@ -1,0 +1,49 @@
+﻿@model IEnumerable<sistema_de_clinicas.Models.consultas>
+
+@{
+    ViewBag.Title = "consultasMedicas";
+}
+
+<div class="jumbotron">
+
+    <h2>Sistema para clinicas</h2>
+    <h3>Listado de consultas medicas</h3>
+    <br /><br />
+
+          <table>
+              <tr>
+                  <th style="height: 40px; width: 80px;">Nº consulta</th>
+                  <th style="height: 40px; width: 160px;">Fecha</th>
+                  <th style="height: 40px; width: 80px;">Costo</th>
+                  <th style="height: 40px; width: 200px;">Descripcion</th>
+                  <th style="height: 40px; width: 80px;">Materiales</th>
+                  <th style="height: 40px; width: 140px;">Consulta</th>
+              </tr>
+
+              @foreach (var item in Model)
+              {
+                  <tr>
+                      <td style="height: 40px">
+                          @Html.DisplayFor(modelItem => item.idConsulta)
+                      </td>
+                      <td>
+                          @Html.DisplayFor(modelItem => item.fechaRealizacion)
+                      </td>
+                      <td>
+                          @Html.DisplayFor(modelItem => item.costo)
+                      </td>
+                      <td>
+                          @Html.DisplayFor(modelItem => item.descripcion)
+                      </td>
+                      <td>
+                          @Html.DisplayFor(modelItem => item.costoMaterialesDescartables)
+                      </td>
+                      <td>
+                          @Html.DisplayFor(modelItem => item.tipoConsulta)
+                      </td>
+                  </tr>
+              }
+          </table>
+</div>
+
+

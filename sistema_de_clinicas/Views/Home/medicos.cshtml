@@ -1,0 +1,34 @@
+﻿@model IEnumerable<sistema_de_clinicas.Models.medicos>
+
+@{
+    ViewBag.Title = "Medicos";
+}
+<div class="jumbotron">
+    <h2>Sistema para clinicas</h2>
+    <h3>Listado de médicos</h3>
+    <br /><br />
+
+    <table>
+        <tr>
+            <td style="height: 40px; width: 200px;">Nº Médico</td>
+            <td style="height: 40px; width: 200px;">Mátricula</td>
+            <td style="height: 40px; width: 200px;">@Html.DisplayNameFor(model => model.especialidad)</td>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td style="height: 40px; width: 200px;">
+                &nbsp;@Html.DisplayFor(modelItem => item.idMedico)
+            </td>
+            <td style="height: 40px; width: 200px;">
+                &nbsp;@Html.DisplayFor(modelItem => item.numeroMatricula)
+            </td>
+            <td style="height: 40px; width: 200px;">
+                &nbsp;@Html.DisplayFor(modelItem => item.especialidad)
+            </td>
+        </tr>
+        }
+    </table>
+
+</div>

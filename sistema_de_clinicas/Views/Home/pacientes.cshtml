@@ -1,0 +1,32 @@
+﻿@model IEnumerable<sistema_de_clinicas.Models.pacientes>
+
+@{
+    ViewBag.Title = "Index";
+}
+<div class="jumbotron">
+    <h2>Sistema para clinicas</h2>
+    <h3>Listado de pacientes</h3>
+    <br/><br/>
+
+    <table>
+        <tr>
+            <td style="height: 40px; width: 139px;">Nº paciente</td>
+            <td style="height: 40px; width: 139px;">@Html.DisplayNameFor(model => model.numeroHistoriaClinica)</td>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td style="height: 40px; width: 139px;">
+                &nbsp;
+                @Html.DisplayFor(modelItem => item.idPaciente)                
+            </td>
+            <td style="height: 40px; width: 139px;">
+                &nbsp;@Html.DisplayFor(modelItem => item.numeroHistoriaClinica)
+            </td>
+           
+        </tr>
+        }
+    </table>
+
+</div>

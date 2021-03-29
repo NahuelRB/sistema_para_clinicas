@@ -1,0 +1,118 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="sistemaClinicasModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="consultas">
+    <Key>
+      <PropertyRef Name="idConsulta" />
+    </Key>
+    <Property Name="idConsulta" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="idPaciente" Type="Int32" />
+    <Property Name="idMedico" Type="Int32" />
+    <Property Name="fechaRealizacion" Type="DateTime" />
+    <Property Name="costo" Type="Single" />
+    <Property Name="descripcion" Type="String" MaxLength="225" FixedLength="false" Unicode="false" />
+    <Property Name="costoMaterialesDescartables" Type="Single" />
+    <Property Name="tipoConsulta" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="medicos" Relationship="Self.idMedico" FromRole="consultas" ToRole="medicos" />
+    <NavigationProperty Name="pacientes" Relationship="Self.idPaciente" FromRole="consultas" ToRole="pacientes" />
+  </EntityType>
+  <EntityType Name="medicos">
+    <Key>
+      <PropertyRef Name="idMedico" />
+    </Key>
+    <Property Name="idMedico" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="idPersona" Type="Int32" />
+    <Property Name="numeroMatricula" Type="Int32" />
+    <Property Name="especialidad" Type="String" MaxLength="225" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="consultas" Relationship="Self.idMedico" FromRole="medicos" ToRole="consultas" />
+    <NavigationProperty Name="personas" Relationship="Self.idPersona" FromRole="medicos" ToRole="personas" />
+  </EntityType>
+  <EntityType Name="pacientes">
+    <Key>
+      <PropertyRef Name="idPaciente" />
+    </Key>
+    <Property Name="idPaciente" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="idPersona" Type="Int32" Nullable="false" />
+    <Property Name="numeroHistoriaClinica" Type="Int32" />
+    <NavigationProperty Name="consultas" Relationship="Self.idPaciente" FromRole="pacientes" ToRole="consultas" />
+    <NavigationProperty Name="personas" Relationship="Self.idPersonaPacientes" FromRole="pacientes" ToRole="personas" />
+  </EntityType>
+  <EntityType Name="personas">
+    <Key>
+      <PropertyRef Name="idPersona" />
+    </Key>
+    <Property Name="idPersona" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nombre" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="medicos" Relationship="Self.idPersona" FromRole="personas" ToRole="medicos" />
+    <NavigationProperty Name="pacientes" Relationship="Self.idPersonaPacientes" FromRole="personas" ToRole="pacientes" />
+  </EntityType>
+  <Association Name="idMedico">
+    <End Role="medicos" Type="Self.medicos" Multiplicity="0..1" />
+    <End Role="consultas" Type="Self.consultas" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="medicos">
+        <PropertyRef Name="idMedico" />
+      </Principal>
+      <Dependent Role="consultas">
+        <PropertyRef Name="idMedico" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="idPaciente">
+    <End Role="pacientes" Type="Self.pacientes" Multiplicity="0..1" />
+    <End Role="consultas" Type="Self.consultas" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="pacientes">
+        <PropertyRef Name="idPaciente" />
+      </Principal>
+      <Dependent Role="consultas">
+        <PropertyRef Name="idPaciente" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="idPersona">
+    <End Role="personas" Type="Self.personas" Multiplicity="0..1" />
+    <End Role="medicos" Type="Self.medicos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="personas">
+        <PropertyRef Name="idPersona" />
+      </Principal>
+      <Dependent Role="medicos">
+        <PropertyRef Name="idPersona" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="idPersonaPacientes">
+    <End Role="personas" Type="Self.personas" Multiplicity="1" />
+    <End Role="pacientes" Type="Self.pacientes" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="personas">
+        <PropertyRef Name="idPersona" />
+      </Principal>
+      <Dependent Role="pacientes">
+        <PropertyRef Name="idPersona" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="sistemaClinicaEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="consultas" EntityType="Self.consultas" />
+    <EntitySet Name="medicos" EntityType="Self.medicos" />
+    <EntitySet Name="pacientes" EntityType="Self.pacientes" />
+    <EntitySet Name="personas" EntityType="Self.personas" />
+    <AssociationSet Name="idMedico" Association="Self.idMedico">
+      <End Role="medicos" EntitySet="medicos" />
+      <End Role="consultas" EntitySet="consultas" />
+    </AssociationSet>
+    <AssociationSet Name="idPaciente" Association="Self.idPaciente">
+      <End Role="pacientes" EntitySet="pacientes" />
+      <End Role="consultas" EntitySet="consultas" />
+    </AssociationSet>
+    <AssociationSet Name="idPersona" Association="Self.idPersona">
+      <End Role="personas" EntitySet="personas" />
+      <End Role="medicos" EntitySet="medicos" />
+    </AssociationSet>
+    <AssociationSet Name="idPersonaPacientes" Association="Self.idPersonaPacientes">
+      <End Role="personas" EntitySet="personas" />
+      <End Role="pacientes" EntitySet="pacientes" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="sistemaClinicasModelStoreContainer" CdmEntityContainer="sistemaClinicasEntities">
+    <EntitySetMapping Name="consultas">
+      <EntityTypeMapping TypeName="sistemaClinicasModel.consultas">
+        <MappingFragment StoreEntitySet="consultas">
+          <ScalarProperty Name="idConsulta" ColumnName="idConsulta" />
+          <ScalarProperty Name="idPaciente" ColumnName="idPaciente" />
+          <ScalarProperty Name="idMedico" ColumnName="idMedico" />
+          <ScalarProperty Name="fechaRealizacion" ColumnName="fechaRealizacion" />
+          <ScalarProperty Name="costo" ColumnName="costo" />
+          <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+          <ScalarProperty Name="costoMaterialesDescartables" ColumnName="costoMaterialesDescartables" />
+          <ScalarProperty Name="tipoConsulta" ColumnName="tipoConsulta" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="medicos">
+      <EntityTypeMapping TypeName="sistemaClinicasModel.medicos">
+        <MappingFragment StoreEntitySet="medicos">
+          <ScalarProperty Name="idMedico" ColumnName="idMedico" />
+          <ScalarProperty Name="idPersona" ColumnName="idPersona" />
+          <ScalarProperty Name="numeroMatricula" ColumnName="numeroMatricula" />
+          <ScalarProperty Name="especialidad" ColumnName="especialidad" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="pacientes">
+      <EntityTypeMapping TypeName="sistemaClinicasModel.pacientes">
+        <MappingFragment StoreEntitySet="pacientes">
+          <ScalarProperty Name="idPaciente" ColumnName="idPaciente" />
+          <ScalarProperty Name="idPersona" ColumnName="idPersona" />
+          <ScalarProperty Name="numeroHistoriaClinica" ColumnName="numeroHistoriaClinica" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="personas">
+      <EntityTypeMapping TypeName="sistemaClinicasModel.personas">
+        <MappingFragment StoreEntitySet="personas">
+          <ScalarProperty Name="idPersona" ColumnName="idPersona" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

@@ -1,0 +1,110 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="sistemaClinicasModel.Store" Provider="MySql.Data.MySqlClient" ProviderManifestToken="8.0" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="consultas">
+    <Key>
+      <PropertyRef Name="idConsulta" />
+    </Key>
+    <Property Name="idConsulta" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="idPaciente" Type="int" />
+    <Property Name="idMedico" Type="int" />
+    <Property Name="fechaRealizacion" Type="date" />
+    <Property Name="costo" Type="float" />
+    <Property Name="descripcion" Type="varchar" MaxLength="225" />
+    <Property Name="costoMaterialesDescartables" Type="float" />
+    <Property Name="tipoConsulta" Type="varchar" MaxLength="45" />
+  </EntityType>
+  <EntityType Name="medicos">
+    <Key>
+      <PropertyRef Name="idMedico" />
+    </Key>
+    <Property Name="idMedico" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="idPersona" Type="int" />
+    <Property Name="numeroMatricula" Type="int" />
+    <Property Name="especialidad" Type="varchar" MaxLength="225" />
+  </EntityType>
+  <EntityType Name="pacientes">
+    <Key>
+      <PropertyRef Name="idPaciente" />
+    </Key>
+    <Property Name="idPaciente" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="idPersona" Type="int" Nullable="false" />
+    <Property Name="numeroHistoriaClinica" Type="int" />
+  </EntityType>
+  <EntityType Name="personas">
+    <Key>
+      <PropertyRef Name="idPersona" />
+    </Key>
+    <Property Name="idPersona" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nombre" Type="varchar" MaxLength="45" />
+  </EntityType>
+  <Association Name="idMedico">
+    <End Role="medicos" Type="Self.medicos" Multiplicity="0..1" />
+    <End Role="consultas" Type="Self.consultas" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="medicos">
+        <PropertyRef Name="idMedico" />
+      </Principal>
+      <Dependent Role="consultas">
+        <PropertyRef Name="idMedico" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="idPaciente">
+    <End Role="pacientes" Type="Self.pacientes" Multiplicity="0..1" />
+    <End Role="consultas" Type="Self.consultas" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="pacientes">
+        <PropertyRef Name="idPaciente" />
+      </Principal>
+      <Dependent Role="consultas">
+        <PropertyRef Name="idPaciente" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="idPersona">
+    <End Role="personas" Type="Self.personas" Multiplicity="0..1" />
+    <End Role="medicos" Type="Self.medicos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="personas">
+        <PropertyRef Name="idPersona" />
+      </Principal>
+      <Dependent Role="medicos">
+        <PropertyRef Name="idPersona" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="idPersonaPacientes">
+    <End Role="personas" Type="Self.personas" Multiplicity="1" />
+    <End Role="pacientes" Type="Self.pacientes" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="personas">
+        <PropertyRef Name="idPersona" />
+      </Principal>
+      <Dependent Role="pacientes">
+        <PropertyRef Name="idPersona" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="sistemaClinicasModelStoreContainer">
+    <EntitySet Name="consultas" EntityType="Self.consultas" Schema="sistema_de_clinicas" store:Type="Tables" />
+    <EntitySet Name="medicos" EntityType="Self.medicos" Schema="sistema_de_clinicas" store:Type="Tables" />
+    <EntitySet Name="pacientes" EntityType="Self.pacientes" Schema="sistema_de_clinicas" store:Type="Tables" />
+    <EntitySet Name="personas" EntityType="Self.personas" Schema="sistema_de_clinicas" store:Type="Tables" />
+    <AssociationSet Name="idMedico" Association="Self.idMedico">
+      <End Role="medicos" EntitySet="medicos" />
+      <End Role="consultas" EntitySet="consultas" />
+    </AssociationSet>
+    <AssociationSet Name="idPaciente" Association="Self.idPaciente">
+      <End Role="pacientes" EntitySet="pacientes" />
+      <End Role="consultas" EntitySet="consultas" />
+    </AssociationSet>
+    <AssociationSet Name="idPersona" Association="Self.idPersona">
+      <End Role="personas" EntitySet="personas" />
+      <End Role="medicos" EntitySet="medicos" />
+    </AssociationSet>
+    <AssociationSet Name="idPersonaPacientes" Association="Self.idPersonaPacientes">
+      <End Role="personas" EntitySet="personas" />
+      <End Role="pacientes" EntitySet="pacientes" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

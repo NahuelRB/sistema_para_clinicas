@@ -1,0 +1,30 @@
+﻿@model IEnumerable<sistema_de_clinicas.Models.personas>
+@{
+    ViewBag.Title = "Personas";
+}
+
+<div class="jumbotron">
+    <h2>Sistema para clínicas</h2>
+    <h3>Listado de personas</h3>
+    <br/><br/>
+
+    <table>
+        <tr>
+            <td style="height: 40px; width: 139px;">Nº persona</td>        
+            <td style="height: 40px; width: 139px;">@Html.DisplayNameFor(model => model.nombre)</td>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td style="height: 40px; width: 139px;">
+                    &nbsp;@Html.DisplayFor(modelItem => item.idPersona)
+                </td>
+                <td style="height: 40px; width: 139px;">
+                    &nbsp;@Html.DisplayFor(modelItem => item.nombre)
+                </td>
+            </tr>
+        }
+    </table>
+
+</div>

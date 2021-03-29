@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="PacientesModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="medicos">
+    <Key>
+      <PropertyRef Name="idMedico" />
+    </Key>
+    <Property Name="idMedico" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="idPersona" Type="Int32" />
+    <Property Name="numeroMatricula" Type="Int32" />
+    <Property Name="especialidad" Type="String" MaxLength="225" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="pacientes">
+    <Key>
+      <PropertyRef Name="idPaciente" />
+    </Key>
+    <Property Name="idPaciente" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="idPersona" Type="Int32" Nullable="false" />
+    <Property Name="numeroHistoriaClinica" Type="Int32" />
+  </EntityType>
+  <EntityContainer Name="PacientesEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="medicos" EntityType="Self.medicos" />
+    <EntitySet Name="pacientes" EntityType="Self.pacientes" />
+  </EntityContainer>
+</Schema>
